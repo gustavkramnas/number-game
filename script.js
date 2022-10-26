@@ -1,7 +1,7 @@
 "use strict";
 
-function blue() {
-  document.getElementById("p").style.color = "blue";
+function green() {
+  document.getElementById("p").style.color = "green";
 }
 
 function red() {
@@ -12,38 +12,31 @@ function orange() {
   document.getElementById("p").style.color = "orange";
 }
 
-function white() {
-  document.getElementById("p").style.color = "white";
+function bisque() {
+  document.getElementById("p").style.color = "bisque";
 }
 
-let btnStartGame = document.getElementById("btnStartGame");
-btnStartGame.addEventListener("click", startGame);
+const form = document.getElementById("guessForm");
+const errorMessage = document.getElementById("errorMessage");
+const successMessage = document.getElementById("successMessage");
 
-function startGame() {
-  alert("You have 10 guesses. Guess from 1-40 :)");
+let number = Math.floor(Math.random() * 41);
 
-  let answer = Math.floor(Math.random() * 41);
-  console.log(answer);
-  let guess = Number(prompt("what's your guess?🌟"));
+form.onsubmit = function (event) {
+  event.preventDefault();
 
-  for (let i = 1; i < 10; i++) {
-    if (answer === guess) {
-      alert("you guessed correctly🎉🔑");
-      break;
-    } else {
-      guess = Number(prompt("please try again 😋"));
-    }
-    if (guess === null) {
-      if (confirm("Are you sure you want to quit? 😱")) {
-        alert("😢");
-        break;
-      } else {
-        continue;
-      }
-    }
+  let guess = Number(form.elements.guess.value);
+  form.elements.guess.value = "";
+  if (guess < number) {
+    showErrorMessage("Higher");
+  } else if (guess > number) {
+    showErrorMessage("Lower");
+  } else if (guess === number) {
+    successMessage.innerHTML = "nice, you are right!🔑";
+    errorMessage.innerHTML = "";
   }
-  if (guess === answer) {
-  } else {
-    alert("The answer was 2️⃣0️⃣ unfortunatly");
-  }
+};
+
+function showErrorMessage(message) {
+  errorMessage.innerHTML = message;
 }
