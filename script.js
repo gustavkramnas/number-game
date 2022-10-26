@@ -19,10 +19,11 @@ function white() {
 let btnStartGame = document.getElementById("btnStartGame");
 btnStartGame.addEventListener("click", startGame);
 
-function startGame(firstRun = true) {
+function startGame() {
   alert("You have 10 guesses. Guess from 1-40 :)");
 
-  let answer = 20;
+  let answer = Math.floor(Math.random() * 41);
+  console.log(answer);
   let guess = Number(prompt("what's your guess?🌟"));
 
   for (let i = 1; i < 10; i++) {
@@ -30,7 +31,7 @@ function startGame(firstRun = true) {
       alert("you guessed correctly🎉🔑");
       break;
     } else {
-      guess = prompt("please try again 😋");
+      guess = Number(prompt("please try again 😋"));
     }
     if (guess === null) {
       if (confirm("Are you sure you want to quit? 😱")) {
