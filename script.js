@@ -28,9 +28,9 @@ form.onsubmit = function (event) {
   let guess = Number(form.elements.guess.value);
   form.elements.guess.value = "";
   if (guess < number) {
-    showErrorMessage("Higher");
+    showErrorMessage("Too low :(");
   } else if (guess > number) {
-    showErrorMessage("Lower");
+    showErrorMessage("Too high :(");
   } else if (guess === number) {
     successMessage.innerHTML = "nice, you are right!🔑";
     errorMessage.innerHTML = "";
